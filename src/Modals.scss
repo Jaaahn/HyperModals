@@ -1,0 +1,109 @@
+.modal-notification {
+    border-radius: 20px;
+    padding: 15px;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    left: 50vw;
+    position: fixed;
+    transform: translate(-50%, 20%);
+
+    animation-name: modal-notification-enter;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+
+    & * {
+        font-size: 20px;
+    }
+
+    p,
+    button,
+    i,
+    img {
+        margin: 0;
+        padding: 0;
+    }
+
+    i {
+        font-size: 30px;
+        margin-right: 30px;
+    }
+
+    img {
+        margin-right: 30px;
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+    }
+
+    p {
+        flex: 20;
+    }
+
+    button {
+        margin-left: 30px;
+        border: none;
+        height: 50px;
+        width: 50px;
+        border-radius: 15px;
+        transition: filter 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    &.dark {
+        background-color: #323232;
+        color: white;
+
+        button {
+            background-color: #323232;
+            color: white; // CONFIG;
+            filter: brightness(1.2);
+
+            &:hover {
+                filter: brightness(1.4);
+            }
+        }
+    }
+
+    &.light {
+        background-color: #f0f0f0;
+        color: #323232; // CONFIG
+
+        button {
+            background-color: #f0f0f0;
+            filter: brightness(0.95);
+            color: #323232; // CONFIG;
+
+            &:hover {
+                filter: brightness(0.85);
+            }
+        }
+    }
+
+    &.exit {
+        animation-name: modal-notification-exit;
+        animation-duration: 0.6s;
+        animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+        transform: translate(-50%, -120%);
+    }
+
+    // TODO: CONFIG custom theme
+}
+
+@keyframes modal-notification-enter {
+    from {
+        transform: translate(-50%, -120%);
+    }
+    to {
+        transform: translate(-50%, 20%);
+    }
+}
+
+@keyframes modal-notification-exit {
+    from {
+        transform: translate(-50%, 20%);
+    }
+    to {
+        transform: translate(-50%, -120%);
+    }
+}

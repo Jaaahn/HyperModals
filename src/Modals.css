@@ -1,0 +1,154 @@
+.modal-notification {
+  border-radius: 20px;
+  padding: 15px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: auto;
+  left: 50vw;
+  position: fixed;
+  -webkit-transform: translate(-50%, 20%);
+          transform: translate(-50%, 20%);
+  -webkit-animation-name: modal-notification-enter;
+          animation-name: modal-notification-enter;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+  -webkit-animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+          animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+}
+
+.modal-notification * {
+  font-size: 20px;
+}
+
+.modal-notification p,
+.modal-notification button,
+.modal-notification i,
+.modal-notification img {
+  margin: 0;
+  padding: 0;
+}
+
+.modal-notification i {
+  font-size: 30px;
+  margin-right: 30px;
+}
+
+.modal-notification img {
+  margin-right: 30px;
+  height: 50px;
+  width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.modal-notification p {
+  -webkit-box-flex: 20;
+      -ms-flex: 20;
+          flex: 20;
+}
+
+.modal-notification button {
+  margin-left: 30px;
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 15px;
+  -webkit-transition: -webkit-filter 0.3s ease-in-out;
+  transition: -webkit-filter 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out;
+  transition: filter 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.modal-notification.dark {
+  background-color: #323232;
+  color: white;
+}
+
+.modal-notification.dark button {
+  background-color: #323232;
+  color: white;
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+}
+
+.modal-notification.dark button:hover {
+  -webkit-filter: brightness(1.4);
+          filter: brightness(1.4);
+}
+
+.modal-notification.light {
+  background-color: #f0f0f0;
+  color: #323232;
+}
+
+.modal-notification.light button {
+  background-color: #f0f0f0;
+  -webkit-filter: brightness(0.95);
+          filter: brightness(0.95);
+  color: #323232;
+}
+
+.modal-notification.light button:hover {
+  -webkit-filter: brightness(0.85);
+          filter: brightness(0.85);
+}
+
+.modal-notification.exit {
+  -webkit-animation-name: modal-notification-exit;
+          animation-name: modal-notification-exit;
+  -webkit-animation-duration: 0.6s;
+          animation-duration: 0.6s;
+  -webkit-animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+          animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+  -webkit-transform: translate(-50%, -120%);
+          transform: translate(-50%, -120%);
+}
+
+@-webkit-keyframes modal-notification-enter {
+  from {
+    -webkit-transform: translate(-50%, -120%);
+            transform: translate(-50%, -120%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 20%);
+            transform: translate(-50%, 20%);
+  }
+}
+
+@keyframes modal-notification-enter {
+  from {
+    -webkit-transform: translate(-50%, -120%);
+            transform: translate(-50%, -120%);
+  }
+  to {
+    -webkit-transform: translate(-50%, 20%);
+            transform: translate(-50%, 20%);
+  }
+}
+
+@-webkit-keyframes modal-notification-exit {
+  from {
+    -webkit-transform: translate(-50%, 20%);
+            transform: translate(-50%, 20%);
+  }
+  to {
+    -webkit-transform: translate(-50%, -120%);
+            transform: translate(-50%, -120%);
+  }
+}
+
+@keyframes modal-notification-exit {
+  from {
+    -webkit-transform: translate(-50%, 20%);
+            transform: translate(-50%, 20%);
+  }
+  to {
+    -webkit-transform: translate(-50%, -120%);
+            transform: translate(-50%, -120%);
+  }
+}
