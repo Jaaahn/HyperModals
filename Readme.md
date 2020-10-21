@@ -24,7 +24,7 @@ let test = new ModalsNotification({
 
 ## Config object
 
--   `el` => The DOM element where the Notification should be attached
+-   `element` => The DOM element where the Notification should be attached
 -   `text` => The Text that should be displayed in the notification (NOT optional)
 -   `icon`: => JavaScript Object which can either contain a `class` or a `url` property. The url will be rendered in a `<img>` HTML Element
 -   `closeBtn` => Boolean, controls if a close button is shown or not

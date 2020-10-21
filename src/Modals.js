@@ -3,7 +3,7 @@
 // -------------------
 class ModalsNotification {
     constructor(config) {
-        this.element = config.el || "body";
+        this.element = config.element || "body";
         this.text = config.text;
         this.icon = config.icon || {};
         this.closeBtn = config.closeBtn || true;
@@ -18,12 +18,15 @@ class ModalsNotification {
         }
 
         this.notificationElement;
-
-        setTimeout(() => this.present(), this.delay);
-        setTimeout(() => this.close(), this.delay + this.duration);
+        this.present();
     }
 
     present() {
+        setTimeout(() => this.create(), this.delay);
+        this.closeTimeout = setTimeout(() => this.close(), this.delay + this.duration);
+    }
+
+    create() {
         // Create container / background
         let notification = document.createElement("div");
         notification.classList.add("modal-notification");
@@ -35,12 +38,15 @@ class ModalsNotification {
 
         // Create icon if specified
         let icon;
-        if (this.icon.hasOwnProperty("url")) {
-            icon = document.createElement("img");
-            icon.src = this.icon.url;
-        } else if (this.icon.hasOwnProperty("class")) {
-            icon = document.createElement("i");
-            this.icon.class.split(" ").forEach((e) => icon.classList.add(e));
+        if (icon) {
+            if (this.icon.hasOwnProperty("url")) {
+                icon = document.createElement("img");
+                icon.src = this.icon.url;
+            } else if (this.icon.hasOwnProperty("class")) {
+                icon = document.createElement("i");
+                x;
+                this.icon.class.split(" ").forEach((e) => icon.classList.add(e));
+            }
         }
 
         // Create close btn if specified
@@ -48,7 +54,10 @@ class ModalsNotification {
         if (this.closeBtn) {
             closeBtn = document.createElement("button");
             closeBtn.innerText = "X";
-            closeBtn.addEventListener("click", this.close);
+            closeBtn.addEventListener("click", () => {
+                this.close();
+                clearTimeout(this.closeTimeout);
+            });
         }
 
         // Add Elements to Container
