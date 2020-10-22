@@ -12,6 +12,8 @@
   position: fixed;
   -webkit-transform: translate(-50%, 20%);
           transform: translate(-50%, 20%);
+  top: 0;
+  z-index: 100;
   -webkit-animation-name: modal-notification-enter;
           animation-name: modal-notification-enter;
   -webkit-animation-duration: 0.6s;

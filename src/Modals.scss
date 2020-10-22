@@ -7,6 +7,8 @@
     left: 50vw;
     position: fixed;
     transform: translate(-50%, 20%);
+    top: 0;
+    z-index: 100;
 
     animation-name: modal-notification-enter;
     animation-duration: 0.6s;
