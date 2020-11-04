@@ -1,5 +1,8 @@
 import "../src/Notification.scss";
 
+// TODO: Clean up variables and names (also variable names to create consistent names)
+// TODO: Add comments
+
 export default class Notification {
     constructor(config) {
         this.element = config.element || "body";

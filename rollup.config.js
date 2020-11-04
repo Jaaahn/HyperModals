@@ -1,5 +1,5 @@
-import scss from "rollup-plugin-scss";
 import { terser } from "rollup-plugin-terser";
+import postcss from "rollup-plugin-postcss";
 
 export default {
     input: "src/bundle.js",
@@ -9,5 +9,9 @@ export default {
         name: "UiModals",
         plugins: [terser()],
     },
-    plugins: [scss()],
+    plugins: [
+        postcss({
+            extensions: [".scss"],
+        }),
+    ],
 };

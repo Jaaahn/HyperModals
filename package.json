@@ -2,25 +2,26 @@
   "name": "ui-modal-library",
   "version": "1.0.0",
   "description": "A Library, that helps you create Modals within seconds!",
-  "main": "dist/Modals.js",
+  "browser": "dist/bundle.js",
   "scripts": {
     "dev": "webpack serve",
     "build": "rollup --config"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jan-b-photography/UI-Modal-Library.git"
+    "url": "git+https://github.com/jaaahn/UI-Modal-Library.git"
   },
-  "author": "jan-b-photography",
+  "author": "jaaahn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jan-b-photography/UI-Modal-Library/issues"
+    "url": "https://github.com/jaaahny/UI-Modal-Library/issues"
   },
-  "homepage": "https://github.com/jan-b-photography/UI-Modal-Library#readme",
+  "homepage": "https://github.com/jaaahn/UI-Modal-Library#readme",
   "keywords": [],
   "devDependencies": {
+    "node-sass": "^5.0.0",
     "rollup": "^2.33.1",
-    "rollup-plugin-scss": "^2.6.1",
+    "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-terser": "^7.0.2"
   },
   "dependencies": {}

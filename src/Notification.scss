@@ -1,3 +1,9 @@
+$lightBgColor: #f0f0f0;
+$lightFontColor: #323232;
+
+$darkBgColor: #323232;
+$darkFontColor: white;
+
 .modal-notification {
     border-radius: 20px;
     padding: 15px;
@@ -53,12 +59,12 @@
     }
 
     &.dark {
-        background-color: #323232;
+        background-color: $darkBgColor;
         color: white;
 
         button {
-            background-color: #323232;
-            color: white; // CONFIG;
+            background-color: $darkBgColor; // CONFIG
+            color: $darkFontColor; // CONFIG
             filter: brightness(1.2);
 
             &:hover {
@@ -68,13 +74,13 @@
     }
 
     &.light {
-        background-color: #f0f0f0;
-        color: #323232; // CONFIG
+        background-color: $lightBgColor;
+        color: $lightFontColor;
 
         button {
-            background-color: #f0f0f0;
+            background-color: $lightBgColor;
             filter: brightness(0.95);
-            color: #323232; // CONFIG;
+            color: $lightFontColor;
 
             &:hover {
                 filter: brightness(0.85);
@@ -88,10 +94,9 @@
         animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
         transform: translate(-50%, -120%);
     }
-
-    // TODO: CONFIG custom theme
 }
 
+// TODO: Rename
 @keyframes modal-notification-enter {
     from {
         transform: translate(-50%, -120%);
