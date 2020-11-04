@@ -1,7 +1,6 @@
-// -------------------
-// Notifications
-// -------------------
-class ModalsNotification {
+import "../src/Notification.scss";
+
+export default class Notification {
     constructor(config) {
         this.element = config.element || "body";
         this.text = config.text;

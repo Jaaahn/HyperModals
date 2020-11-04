@@ -8,12 +8,12 @@
     <body></body>
 
     <!-- Include Files -->
-    <script src="src/Modals.js"></script>
-    <link rel="stylesheet" href="src/Modals.css" />
+    <script src="../dist/bundle.js"></script>
+    <link rel="stylesheet" href="../dist/bundle.css" />
 
     <!-- Demo Init -->
     <script defer>
-        let test = new ModalsNotification({
+        new UiModals.Notification({
             element: "body",
             text: "Hello, how are you?",
             duration: 1000 * 5,
