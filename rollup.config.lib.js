@@ -5,7 +5,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 export default {
     input: "src/bundle.js",
     output: {
-        file: "dist/bundle.js",
+        file: "dist/bundle.min.js",
         format: "umd",
         name: "UiModals",
         plugins: [terser()],

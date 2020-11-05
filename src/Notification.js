@@ -3,10 +3,11 @@ import "../src/Notification.scss";
 // TODO: Clean up variables and names (also variable names to create consistent names)
 
 export default class Notification {
-    constructor(config) {
-        // Store config in class
+    constructor(text, config = {}) {
+        // Store config and text in class
+        this.text = text;
+
         this.element = config.element || "body";
-        this.text = config.text;
         this.icon = config.icon || {};
         this.closeBtn = config.closeBtn != undefined ? config.closeBtn : true; // This is a boolean value, so if closeBtn is false, it would automatically take the "default" value which would be true
         this.theme = config.theme || "light";
@@ -84,6 +85,7 @@ export default class Notification {
         this.notificationElement.classList.add("exit");
         setTimeout(() => {
             document.querySelector(this.element).removeChild(this.notificationElement);
+            clearTimeout(this.closeTimeout);
         }, 1000 * 0.6);
     }
 }

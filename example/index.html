@@ -12,13 +12,21 @@
 
     <!-- Run demo of notification -->
     <script defer>
-        new UiModals.Notification({
+        // Example
+        let modal1 = new UiModals.Notification("Hello, how are you?", {
             element: "body",
-            text: "Hello, how are you?",
             duration: 1000 * 5,
             theme: "dark",
-            closeBtn: false,
+            closeBtn: true,
         });
+
+        // Minimal setup
+        /* let modal2 = new UiModals.Notification("Hello, how are you?"); */
+
+        // Use this if you need to close the modal
+        /* setTimeout(() => {
+            modal2.close();
+        }, 2000); */
     </script>
 
     <!-- Demo basic CSS -->
