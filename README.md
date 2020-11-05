@@ -1,6 +1,6 @@
 # UI-Modal-Library
 
-(Yeah, we're searching for a better name)
+UI-Modal-Library is a small library focused on making common tasks like creating modals and UI notifications easy and fast.
 
 # Installation / CDN Setup
 

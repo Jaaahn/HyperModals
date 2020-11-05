@@ -18,7 +18,7 @@ export default class Notification {
         // Provide errors if non-optional values aren't given
         if (!this.text) {
             console.error("Error: config.text is undefined.");
-            console.warn("Try something like this: \n\nlet modal = new ModalsNotification({ text: 'This is the displayed text' }); \n\nFor more info visit: GITHUB LINK COMING SOON");
+            console.warn("Try something like this: \n\nlet modal = new ModalsNotification({ text: 'This is the displayed text' }); \n\nFor more info visit: https://github.com/Jaaahn/UI-Modal-Library/");
             return;
         }
 
