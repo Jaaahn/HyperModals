@@ -6,6 +6,12 @@
 
 Coming soon
 
+# Developing
+
+1. Install the dependencies `npm i`
+2. Run live reload example server `npm run dev`
+3. Build for production `npm run build`
+
 # The config object:
 
 The config object is the attribute that you pass to the class when creating a new instance.  

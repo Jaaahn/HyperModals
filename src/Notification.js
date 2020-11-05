@@ -1,29 +1,35 @@
 import "../src/Notification.scss";
 
 // TODO: Clean up variables and names (also variable names to create consistent names)
-// TODO: Add comments
 
 export default class Notification {
     constructor(config) {
+        // Store config in class
         this.element = config.element || "body";
         this.text = config.text;
         this.icon = config.icon || {};
-        this.closeBtn = config.closeBtn || true;
+        this.closeBtn = config.closeBtn != undefined ? config.closeBtn : true; // This is a boolean value, so if closeBtn is false, it would automatically take the "default" value which would be true
         this.theme = config.theme || "light";
         this.delay = config.delay || 0;
         this.duration = config.duration || 1000 * 5;
 
+        console.dir(config);
+
+        // Provide errors if non-optional values aren't given
         if (!this.text) {
             console.error("Error: config.text is undefined.");
             console.warn("Try something like this: \n\nlet modal = new ModalsNotification({ text: 'This is the displayed text' }); \n\nFor more info visit: GITHUB LINK COMING SOON");
             return;
         }
 
+        // Init the variable where the html will be strore
         this.notificationElement;
+
         this.present();
     }
 
     present() {
+        // Call create after timeout & call close after timeout
         setTimeout(() => this.create(), this.delay);
         this.closeTimeout = setTimeout(() => this.close(), this.delay + this.duration);
     }
@@ -31,7 +37,7 @@ export default class Notification {
     create() {
         // Create container / background
         let notification = document.createElement("div");
-        notification.classList.add("modal-notification");
+        notification.classList.add("uimodals-notification");
         notification.classList.add(this.theme);
 
         // Create main text
@@ -74,6 +80,7 @@ export default class Notification {
     }
 
     close() {
+        // Add animation class
         this.notificationElement.classList.add("exit");
         setTimeout(() => {
             document.querySelector(this.element).removeChild(this.notificationElement);
