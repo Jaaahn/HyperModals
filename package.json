@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "An ease to use JS library, that helps you create Modals within seconds!",
   "browser": "dist/bundle.min.js",
+  "module": "dist/bundle.es.js",
   "scripts": {
     "dev": "rollup --config rollup.config.dev.js -w",
     "build": "rollup --config rollup.config.lib.js"
@@ -18,18 +19,17 @@
   },
   "homepage": "https://github.com/jaaahn/UI-Modal-Library#readme",
   "keywords": [
-      "modal",
-      "modals",
-      "notification",
-      "notifications",
-      "js",
-      "javascript",
-      "ui",
-      "communication",
-      "jaaahn"
+    "modal",
+    "modals",
+    "notification",
+    "notifications",
+    "js",
+    "javascript",
+    "ui",
+    "communication",
+    "jaaahn"
   ],
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^10.0.0",
     "node-sass": "^5.0.0",
     "rollup": "^2.33.1",
     "rollup-plugin-livereload": "^2.0.0",

@@ -8,12 +8,16 @@
     <body></body>
 
     <!-- Include bundle -->
-    <script src="bundle.js"></script>
+    <script src="bundle.dev.js"></script>
 
     <!-- Run demo of notification -->
     <script defer>
+        // ----------
+        // Notifications
+        // ----------
+
         // Example
-        let modal1 = new UiModals.Notification("Hello, how are you?", {
+        let notification1 = new UiModals.Notification("Hello, how are you?", {
             element: "body",
             duration: 1000 * 5,
             theme: "dark",
@@ -27,6 +31,11 @@
         /* setTimeout(() => {
             modal2.close();
         }, 2000); */
+
+        // ----------
+        // Modals
+        // ----------
+        new UiModals.Modal();
     </script>
 
     <!-- Demo basic CSS -->

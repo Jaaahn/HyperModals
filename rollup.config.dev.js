@@ -1,5 +1,4 @@
 import postcss from "rollup-plugin-postcss";
-import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
@@ -7,7 +6,7 @@ import livereload from "rollup-plugin-livereload";
 export default {
     input: "src/bundle.js",
     output: {
-        file: "dist/bundle.js",
+        file: "example/bundle.dev.js",
         format: "umd",
         name: "UiModals",
     },
@@ -15,12 +14,11 @@ export default {
         postcss({
             extensions: [".scss"],
         }),
-        nodeResolve(),
         serve({
-            contentBase: ["./example", "./dist"],
+            contentBase: ["./example"],
         }),
         livereload({
-            watch: ["./dist", "./example"],
+            watch: ["./example"],
             exts: ["html", "js", "scss"],
         }),
     ],

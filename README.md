@@ -3,9 +3,7 @@
 UI-Modal-Library is a small library focused on making typical tasks like creating modals and UI notifications easy and fast.
 It aims on providing an intuitive and stripped-down developer experience that allows for focusing on the task of creating a good app. You can start with the default configuration and later tweak the values to match your needs and the style of your application.
 
-# Installation / CDN Setup
-
-`Coming soon`
+And please help me find a better name for this ;)
 
 # Developing
 
@@ -15,6 +13,20 @@ It aims on providing an intuitive and stripped-down developer experience that al
 4. Submit a pull-request
 
 More info on how to contribute can be found in the [CONTRIBUTING.md](https://github.com/Jaaahn/UI-Modal-Library/blob/master/CONTRIBUTING.md) file.
+
+# Installation / CDN Setup
+
+`Coming soon`
+
+# Importing the Library
+
+This is a UI library, please don't try this in node ;)
+
+From CDN:  
+`<script src="CDN-LINK-COMMING-SOON/bundle.dev.js"></script>`
+
+Or as a ES6 Module:  
+`import UiModals from "ui-modal-library"`
 
 # The config:
 
