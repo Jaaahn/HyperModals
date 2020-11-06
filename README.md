@@ -1,21 +1,24 @@
 # UI-Modal-Library
 
-UI-Modal-Library is a small library focused on making common tasks like creating modals and UI notifications easy and fast.
+UI-Modal-Library is a small library focused on making typical tasks like creating modals and UI notifications easy and fast.
+It aims on providing an intuitive and stripped-down developer experience that allows for focusing on the task of creating a good app. You can start with the default configuration and later tweak the values to match your needs and the style of your application.
 
 # Installation / CDN Setup
 
-Coming soon
+`Coming soon`
 
 # Developing
 
-1. Install the dependencies `npm i`
+1. Fork & Clone the repository
 2. Run live reload example server `npm run dev`
 3. Build for production `npm run build`
+4. Submit a pull-request
 
-# The config object:
+More info on how to contribute can be found in the [CONTRIBUTING.md](https://github.com/Jaaahn/UI-Modal-Library/blob/master/CONTRIBUTING.md) file.
 
-The config object is the attribute that you pass to the class when creating a new instance.  
-The config has several options wich are mainly opional (if not, there is a info in the detailed documentation and there will be an error message in your JS console).  
+# The config:
+
+The config has several options wich are mainly opional (if not, there is a info in the detailed documentation and there will be an error message if necesarry in your JS console).  
 Details on what options are available can be found in the detailed documentation of each modal type below.
 
 # Creating a Notification
