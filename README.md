@@ -3,8 +3,6 @@
 HyperModals is a small library focused on making typical tasks like creating modals and UI notifications easy and fast.
 It aims on providing an intuitive and stripped-down developer experience that allows for focusing on the task of creating a good app. You can start with the default configuration and later tweak the values to match your needs and the style of your application.
 
-And please help me find a better name for this ;)
-
 # Developing
 
 1. Fork & Clone the repository
@@ -60,4 +58,4 @@ A more complex example can be found in `example/index.html`, we recommend runnin
 # TODOS:
 
 -   [ ] Add Modals
--   [ ] Add codepen example to "creating a notification" / "simple example"
+-   [ ] Add codepen (?) example to "creating a notification" / "simple example"
