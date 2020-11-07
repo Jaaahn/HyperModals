@@ -10,7 +10,7 @@ It aims on providing an intuitive and stripped-down developer experience that al
 3. Build for production `npm run build`
 4. Submit a pull-request
 
-More info on how to contribute can be found in the [CONTRIBUTING.md](https://github.com/Jaaahn/UI-Modal-Library/blob/master/CONTRIBUTING.md) file.
+More info on how to contribute can be found in the [CONTRIBUTING.md](https://github.com/Jaaahn/HyperModals/blob/master/CONTRIBUTING.md) file.
 
 # Installation / CDN Setup
 
@@ -21,7 +21,7 @@ More info on how to contribute can be found in the [CONTRIBUTING.md](https://git
 This is a UI library, please don't try this in node ;)
 
 From CDN:  
-`<script src="CDN-LINK-COMMING-SOON/hyper-modals.min.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/hyper-modals@1.0.1/dist/hyper-modals.min.js"></script>`
 
 Or as a ES6 Module:  
 `import HyperModals from "hyper-modals"`
