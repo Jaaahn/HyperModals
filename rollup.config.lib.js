@@ -5,15 +5,15 @@ export default {
     input: "src/bundle.js",
     output: [
         {
-            file: "dist/bundle.min.js",
+            file: "dist/hyper-modals.min.js",
             format: "umd",
-            name: "UiModals",
+            name: "HyperModals",
             plugins: [terser()],
         },
         {
-            file: "dist/bundle.es.js",
+            file: "dist/hyper-modals.es.js",
             format: "es",
-            name: "UiModals",
+            name: "HyperModals",
         },
     ],
     plugins: [

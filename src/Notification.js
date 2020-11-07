@@ -18,8 +18,8 @@ export default class Notification {
 
         // Provide errors if non-optional values aren't given
         if (!this.text) {
-            console.error("Error: config.text is undefined.");
-            console.warn("Try something like this: \n\nlet modal = new ModalsNotification({ text: 'This is the displayed text' }); \n\nFor more info visit: https://github.com/Jaaahn/UI-Modal-Library/");
+            console.error("Error: text param is undefined.");
+            console.warn("Try something like this: \n\nlet modal = new HyperModals.Notification('This ist the displayed text', { theme: 'dark' }); \n\nFor more info visit: https://github.com/Jaaahn/HyperModals/");
             return;
         }
 
@@ -38,7 +38,7 @@ export default class Notification {
     create() {
         // Create container / background
         let notification = document.createElement("div");
-        notification.classList.add("uimodals-notification");
+        notification.classList.add("hypermodals-notification");
         notification.classList.add(this.theme);
 
         // Create main text

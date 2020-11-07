@@ -6,7 +6,7 @@ $darkBgColor: #323232;
 $darkFontColor: white;
 
 // Style container
-.uimodals-notification {
+.hypermodals-notification {
     border-radius: 20px;
     padding: 15px;
     display: inline-flex;
@@ -18,7 +18,7 @@ $darkFontColor: white;
     top: 0;
     z-index: 100;
 
-    animation-name: uimodals-notification-enter;
+    animation-name: hypermodals-notification-enter;
     animation-duration: 0.6s;
     animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
 
@@ -97,7 +97,7 @@ $darkFontColor: white;
 
     // Apply exit animation
     &.exit {
-        animation-name: uimodals-notification-exit;
+        animation-name: hypermodals-notification-exit;
         animation-duration: 0.6s;
         animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
         transform: translate(-50%, -120%);
@@ -105,7 +105,7 @@ $darkFontColor: white;
 }
 
 // TODO: Rename
-@keyframes uimodals-notification-enter {
+@keyframes hypermodals-notification-enter {
     from {
         transform: translate(-50%, -120%);
     }
@@ -114,7 +114,7 @@ $darkFontColor: white;
     }
 }
 
-@keyframes uimodals-notification-exit {
+@keyframes hypermodals-notification-exit {
     from {
         transform: translate(-50%, 20%);
     }

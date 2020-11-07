@@ -6,9 +6,9 @@ import livereload from "rollup-plugin-livereload";
 export default {
     input: "src/bundle.js",
     output: {
-        file: "example/bundle.dev.js",
+        file: "example/hyper-modals.dev.js",
         format: "umd",
-        name: "UiModals",
+        name: "HyperModals",
     },
     plugins: [
         postcss({

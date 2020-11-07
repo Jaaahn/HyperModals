@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Modals Test / Demo</title>
+        <title>HyperModals Demo</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://kit.fontawesome.com/56fce234d3.js"></script>
@@ -8,7 +8,7 @@
     <body></body>
 
     <!-- Include bundle -->
-    <script src="bundle.dev.js"></script>
+    <script src="hyper-modals.dev.js"></script>
 
     <!-- Run demo of notification -->
     <script defer>
@@ -17,7 +17,7 @@
         // ----------
 
         // Example
-        let notification1 = new UiModals.Notification("Hello, how are you?", {
+        let notification1 = new HyperModals.Notification("Hello, how are you?", {
             element: "body",
             duration: 1000 * 5,
             theme: "dark",
@@ -25,7 +25,7 @@
         });
 
         // Minimal setup
-        /* let modal2 = new UiModals.Notification("Hello, how are you?"); */
+        /* let modal2 = new HyperModals.Notification("Hello, how are you?"); */
 
         // Use this if you need to close the modal
         /* setTimeout(() => {
@@ -35,7 +35,7 @@
         // ----------
         // Modals
         // ----------
-        new UiModals.Modal();
+        new HyperModals.Modal();
     </script>
 
     <!-- Demo basic CSS -->

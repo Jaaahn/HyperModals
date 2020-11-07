@@ -1,6 +1,6 @@
-# UI-Modal-Library
+# HyperModals
 
-UI-Modal-Library is a small library focused on making typical tasks like creating modals and UI notifications easy and fast.
+HyperModals is a small library focused on making typical tasks like creating modals and UI notifications easy and fast.
 It aims on providing an intuitive and stripped-down developer experience that allows for focusing on the task of creating a good app. You can start with the default configuration and later tweak the values to match your needs and the style of your application.
 
 And please help me find a better name for this ;)
@@ -16,17 +16,17 @@ More info on how to contribute can be found in the [CONTRIBUTING.md](https://git
 
 # Installation / CDN Setup
 
-`Coming soon`
+`npm i hyper-modals`
 
 # Importing the Library
 
 This is a UI library, please don't try this in node ;)
 
 From CDN:  
-`<script src="CDN-LINK-COMMING-SOON/bundle.dev.js"></script>`
+`<script src="CDN-LINK-COMMING-SOON/hyper-modals.min.js"></script>`
 
 Or as a ES6 Module:  
-`import UiModals from "ui-modal-library"`
+`import HyperModals from "hyper-modals"`
 
 # The config:
 
@@ -38,7 +38,7 @@ Details on what options are available can be found in the detailed documentation
 ## Simple example:
 
 ```
-let test = new UiModals.Notification("Hello, how are you?", { theme: "dark" });
+let test = new HyperModals.Notification("Hello, how are you?", { theme: "dark" });
 ```
 
 A more complex example can be found in `example/index.html`, we recommend running it with `npm run dev`

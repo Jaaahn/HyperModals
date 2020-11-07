@@ -1,24 +1,29 @@
 {
-  "name": "ui-modal-library",
+  "name": "hyper-modals",
   "version": "1.0.0",
   "description": "An ease to use JS library, that helps you create Modals within seconds!",
-  "browser": "dist/bundle.min.js",
-  "module": "dist/bundle.es.js",
+  "browser": "dist/hyper-modals.min.js",
+  "module": "dist/hyper-modals.es.js",
   "scripts": {
     "dev": "rollup --config rollup.config.dev.js -w",
     "build": "rollup --config rollup.config.lib.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaaahn/UI-Modal-Library.git"
+    "url": "git+https://github.com/jaaahn/HyperModals.git"
   },
   "author": "jaaahn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaaahny/UI-Modal-Library/issues"
+    "url": "https://github.com/jaaahny/HyperModals/issues"
   },
-  "homepage": "https://github.com/jaaahn/UI-Modal-Library#readme",
+  "homepage": "https://github.com/jaaahn/HyperModals#readme",
   "keywords": [
+    "hyper",
+    "hypermodal",
+    "hypermodals",
+    "hyper-modal",
+    "hyper-modals",
     "modal",
     "modals",
     "notification",

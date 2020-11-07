@@ -8,7 +8,7 @@ Hello! Nice to see you here. If you'd like to contribute to this project, it'd b
 ## Issues
 
 When opening an issue, please follow some basic rules like explaining the steps to reproduce if creating a bug report or explain how to implement your feature request.
-Please also always label your issues. We typically assign a "priority" label. You can look up the project's [labels](https://github.com/Jaaahn/UI-Modal-Library/labels) if you're unsure which labels to choose.
+Please also always label your issues. We typically assign a "priority" label. You can look up the project's [labels](https://github.com/Jaaahn/HyperModals/labels) if you're unsure which labels to choose.
 If you have questions about this project, how to develop, how to use the code, and more, simply create an issue with the "question" label. We will also moderate the issues so you don't have to nail the title or the labels.
 
 ## Starting to work
