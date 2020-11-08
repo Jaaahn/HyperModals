@@ -53,14 +53,14 @@ A more complex example can be found in `example/index.html`, we recommend runnin
 
 ## Config
 
-| Option name | Type        | Default value | Description                                                                                           |
-| ----------- | ----------- | ------------- | ----------------------------------------------------------------------------------------------------- |
-| `element`   | String      | "body"        | The DOM element where the Notification should be attached (works like you CSS selectors)              |
-| `icon`      | Object      | {}            | Can either contain a `class` or a `url` property. The url will be rendered in an `<img>` HTML Element |
-| `closeBtn`  | Boolean     | true          | Controls if a close button is shown or not                                                            |
-| `theme`     | String      | "light"       | Mainly affects the background color (See below for more information about custom CSS)                 |
-| `delay`     | Int (in ms) | 0             | The delay the notification will wait before appearing on the screen                                   |
-| `duration`  | Int (in ms) | 5000          | Time the notificaiton woll stay visible to the user                                                   |
+| Option name | Type        | Default value | Description                                                                                                  |
+| ----------- | ----------- | ------------- | ------------------------------------------------------------------------------------------------------------ |
+| `element`   | String      | `"body"`      | The DOM element where the Notification should be attached (works like you CSS selectors)                     |
+| `icon`      | Object      | `{}`          | Can either contain a `class` or a `url` property. The url will be rendered in an `<img>` HTML Element        |
+| `closeBtn`  | Boolean     | `true`        | Controls if a close button is shown or not                                                                   |
+| `theme`     | String      | `"light"`     | `"light"` or `"dark"`. Mainly affects the background color (See below for more information about custom CSS) |
+| `delay`     | Int (in ms) | `0`           | The delay the notification will wait before appearing on the screen                                          |
+| `duration`  | Int (in ms) | `5000`        | Time the notification woll stay visible to the user                                                          |
 
 # Creating a Modal
 
