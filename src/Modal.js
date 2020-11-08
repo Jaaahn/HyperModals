@@ -1,5 +1,5 @@
 export default class Modal {
     constructor() {
-        console.log("This is a modal");
+        console.log("Modals will come soon.");
     }
 }
