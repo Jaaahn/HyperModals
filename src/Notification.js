@@ -14,7 +14,7 @@ export default class Notification {
         this.delay = config.delay || 0;
         this.duration = config.duration || 1000 * 5;
 
-        console.dir(config);
+        /* console.dir(config); */
 
         // Provide errors if non-optional values aren't given
         if (!this.text) {
@@ -39,7 +39,7 @@ export default class Notification {
         // Create container / background
         let notification = document.createElement("div");
         notification.classList.add("hypermodals-notification");
-        notification.classList.add(this.theme);
+        notification.classList.add("hypermodals-notification-" + this.theme);
 
         // Create main text
         let text = document.createElement("p");
@@ -82,7 +82,7 @@ export default class Notification {
 
     close() {
         // Add animation class
-        this.notificationElement.classList.add("exit");
+        this.notificationElement.classList.add("hypermodals-notification-exit");
         setTimeout(() => {
             document.querySelector(this.element).removeChild(this.notificationElement);
             clearTimeout(this.closeTimeout);

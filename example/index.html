@@ -20,10 +20,12 @@
         let notification1 = new HyperModals.Notification("Hello, how are you?", {
             element: "body",
             duration: 1000 * 5,
-            theme: "dark",
+            delay: 0,
+            theme: "light",
             closeBtn: true,
         });
 
+        // TODO: NOT SAME LEVEL WHEN CHANGING CLOSEBTN
         // Minimal setup
         /* let modal2 = new HyperModals.Notification("Hello, how are you?"); */
 
@@ -35,7 +37,7 @@
         // ----------
         // Modals
         // ----------
-        new HyperModals.Modal();
+        /* let modal1 = new HyperModals.Modal("<p>Hallo</p>"); */
     </script>
 
     <!-- Demo basic CSS -->

@@ -64,7 +64,7 @@ $darkFontColor: white;
     }
 
     // Assign container colors for "dark" theme
-    &.dark {
+    &.hypermodals-notification-dark {
         background-color: $darkBgColor;
         color: white;
 
@@ -80,14 +80,14 @@ $darkFontColor: white;
     }
 
     // Assign container colors for "light" theme
-    &.light {
+    &.hypermodals-notification-light {
         background-color: $lightBgColor;
         color: $lightFontColor;
 
         button {
             background-color: $lightBgColor;
-            filter: brightness(0.95);
             color: $lightFontColor;
+            filter: brightness(0.95);
 
             &:hover {
                 filter: brightness(0.85);
@@ -96,7 +96,7 @@ $darkFontColor: white;
     }
 
     // Apply exit animation
-    &.exit {
+    &.hypermodals-notification-exit {
         animation-name: hypermodals-notification-exit;
         animation-duration: 0.6s;
         animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
@@ -104,7 +104,6 @@ $darkFontColor: white;
     }
 }
 
-// TODO: Rename
 @keyframes hypermodals-notification-enter {
     from {
         transform: translate(-50%, -120%);
