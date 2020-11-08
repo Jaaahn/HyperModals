@@ -25,7 +25,7 @@ More info on how to contribute can be found in the [CONTRIBUTING.md](https://git
 This is a UI library, please don't try this in node ;)
 
 From CDN:  
-`<script src="https://cdn.jsdelivr.net/npm/hyper-modals/dist/hyper-modals.min.js"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/hyper-modals/dist/hyper-modals.min.js"></script>`  
 Or go to [jsDelivr](https://www.jsdelivr.com/package/npm/hyper-modals) to view more options.
 
 Or as a ES Module:  
@@ -48,8 +48,10 @@ A more complex example can be found in `example/index.html`, we recommend runnin
 
 ## Parameters
 
--   `text` : String => The text you want to display
--   `config` : Object => Your config (details below)
+| Option name | Type   | Description                          |
+| ----------- | ------ | ------------------------------------ |
+| `text`      | String | The text you want to display         |
+| `config`    | Object | Your config (details below) OPTIONAL |
 
 ## Config
 
