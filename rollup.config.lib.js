@@ -14,6 +14,7 @@ export default {
             file: "dist/hyper-modals.es.js",
             format: "es",
             name: "HyperModals",
+            plugins: [terser()],
         },
     ],
     plugins: [

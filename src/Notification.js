@@ -14,7 +14,7 @@ export default class Notification {
         this.delay = config.delay || 0;
         this.duration = config.duration || 1000 * 5;
 
-        console.dir(config);
+        // console.dir(config);
 
         // Provide errors if non-optional values aren't given
         if (!this.text) {
