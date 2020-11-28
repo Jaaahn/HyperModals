@@ -1,5 +1,5 @@
 /*
-    HyperModals 1.0.3
+    HyperModals 1.0.4
     (c) 2020 Jaaahn
     license MIT
     Repo: https://github.com/jaaahn/HyperModals
