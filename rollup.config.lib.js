@@ -1,5 +1,6 @@
 import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default {
     input: "src/bundle.js",
@@ -20,5 +21,6 @@ export default {
         postcss({
             extensions: [".scss"],
         }),
+        nodeResolve(),
     ],
 };

@@ -110,33 +110,255 @@
       }
   }
 
-  var css_248z$1 = ".hypermodals-modal {\n  padding: 15px;\n  padding-top: 65px;\n  border-radius: 20px;\n  align-items: center;\n  z-index: 99;\n  background-color: #ffffff;\n  box-sizing: border-box;\n  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);\n  position: fixed;\n  transform: translate(-50%, -50%);\n  left: 50vw;\n  top: 50vh;\n  max-height: 80vh;\n  width: calc(100vw - 40px);\n  animation-name: hypermodals-modal-enter;\n  animation-duration: 0.5s;\n  /* animation-timing-function: cubic-bezier(0.1, 0, 0.58, 1); */\n  animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1); }\n  .hypermodals-modal * {\n    font-size: 20px; }\n  .hypermodals-modal p,\n  .hypermodals-modal button,\n  .hypermodals-modal i,\n  .hypermodals-modal img {\n    margin: 0;\n    padding: 0; }\n  .hypermodals-modal .hypermodals-modal-closebtn {\n    position: absolute;\n    right: 15px;\n    top: 15px;\n    height: 50px;\n    width: 50px;\n    border-radius: 15px;\n    border: none;\n    transition: filter 0.3s ease-in-out;\n    cursor: pointer;\n    color: #323232;\n    background-color: #ffffff;\n    filter: brightness(0.97); }\n    .hypermodals-modal .hypermodals-modal-closebtn:hover {\n      filter: brightness(0.89); }\n  .hypermodals-modal .hypermodals-modal-content {\n    padding-top: 15px; }\n  .hypermodals-modal.hypermodals-modal-exit {\n    animation-name: hypermodals-modal-exit;\n    animation-duration: 0.6s;\n    animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);\n    transform: translate(-50%, -120%); }\n\n@keyframes hypermodals-modal-enter {\n  0% {\n    transform: translate(-50%, 50vh);\n    opacity: 0;\n    box-shadow: none; }\n  30% {\n    opacity: 0; }\n  100% {\n    transform: translate(-50%, -50%);\n    opacity: 1;\n    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1); } }\n\n@keyframes hypermodals-modal-exit {\n  0% {\n    transform: translate(-50%, -50%);\n    opacity: 1;\n    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1); }\n  70% {\n    opacity: 0; }\n  100% {\n    transform: translate(-50%, 50vh);\n    opacity: 0;\n    box-shadow: none; } }\n\n@media only screen and (min-width: 800px) {\n  .hypermodals-modal {\n    width: 80vw; } }\n\n@media only screen and (min-width: 1100px) {\n  .hypermodals-modal {\n    width: 60vw; } }\n\n@media only screen and (min-width: 1500px) {\n  .hypermodals-modal {\n    width: 800px; } }\n";
+  function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+  // Older browsers don't support event options, feature detect it.
+
+  // Adopted and modified solution from Bohdan Didukh (2017)
+  // https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi
+
+  var hasPassiveEvents = false;
+  if (typeof window !== 'undefined') {
+    var passiveTestOptions = {
+      get passive() {
+        hasPassiveEvents = true;
+        return undefined;
+      }
+    };
+    window.addEventListener('testPassive', null, passiveTestOptions);
+    window.removeEventListener('testPassive', null, passiveTestOptions);
+  }
+
+  var isIosDevice = typeof window !== 'undefined' && window.navigator && window.navigator.platform && (/iP(ad|hone|od)/.test(window.navigator.platform) || window.navigator.platform === 'MacIntel' && window.navigator.maxTouchPoints > 1);
+
+
+  var locks = [];
+  var documentListenerAdded = false;
+  var initialClientY = -1;
+  var previousBodyOverflowSetting = void 0;
+  var previousBodyPaddingRight = void 0;
+
+  // returns true if `el` should be allowed to receive touchmove events.
+  var allowTouchMove = function allowTouchMove(el) {
+    return locks.some(function (lock) {
+      if (lock.options.allowTouchMove && lock.options.allowTouchMove(el)) {
+        return true;
+      }
+
+      return false;
+    });
+  };
+
+  var preventDefault = function preventDefault(rawEvent) {
+    var e = rawEvent || window.event;
+
+    // For the case whereby consumers adds a touchmove event listener to document.
+    // Recall that we do document.addEventListener('touchmove', preventDefault, { passive: false })
+    // in disableBodyScroll - so if we provide this opportunity to allowTouchMove, then
+    // the touchmove event on document will break.
+    if (allowTouchMove(e.target)) {
+      return true;
+    }
+
+    // Do not prevent if the event has more than one touch (usually meaning this is a multi touch gesture like pinch to zoom).
+    if (e.touches.length > 1) return true;
+
+    if (e.preventDefault) e.preventDefault();
+
+    return false;
+  };
+
+  var setOverflowHidden = function setOverflowHidden(options) {
+    // If previousBodyPaddingRight is already set, don't set it again.
+    if (previousBodyPaddingRight === undefined) {
+      var _reserveScrollBarGap = !!options && options.reserveScrollBarGap === true;
+      var scrollBarGap = window.innerWidth - document.documentElement.clientWidth;
+
+      if (_reserveScrollBarGap && scrollBarGap > 0) {
+        previousBodyPaddingRight = document.body.style.paddingRight;
+        document.body.style.paddingRight = scrollBarGap + 'px';
+      }
+    }
+
+    // If previousBodyOverflowSetting is already set, don't set it again.
+    if (previousBodyOverflowSetting === undefined) {
+      previousBodyOverflowSetting = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  var restoreOverflowSetting = function restoreOverflowSetting() {
+    if (previousBodyPaddingRight !== undefined) {
+      document.body.style.paddingRight = previousBodyPaddingRight;
+
+      // Restore previousBodyPaddingRight to undefined so setOverflowHidden knows it
+      // can be set again.
+      previousBodyPaddingRight = undefined;
+    }
+
+    if (previousBodyOverflowSetting !== undefined) {
+      document.body.style.overflow = previousBodyOverflowSetting;
+
+      // Restore previousBodyOverflowSetting to undefined
+      // so setOverflowHidden knows it can be set again.
+      previousBodyOverflowSetting = undefined;
+    }
+  };
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#Problems_and_solutions
+  var isTargetElementTotallyScrolled = function isTargetElementTotallyScrolled(targetElement) {
+    return targetElement ? targetElement.scrollHeight - targetElement.scrollTop <= targetElement.clientHeight : false;
+  };
+
+  var handleScroll = function handleScroll(event, targetElement) {
+    var clientY = event.targetTouches[0].clientY - initialClientY;
+
+    if (allowTouchMove(event.target)) {
+      return false;
+    }
+
+    if (targetElement && targetElement.scrollTop === 0 && clientY > 0) {
+      // element is at the top of its scroll.
+      return preventDefault(event);
+    }
+
+    if (isTargetElementTotallyScrolled(targetElement) && clientY < 0) {
+      // element is at the bottom of its scroll.
+      return preventDefault(event);
+    }
+
+    event.stopPropagation();
+    return true;
+  };
+
+  var disableBodyScroll = function disableBodyScroll(targetElement, options) {
+    // targetElement must be provided
+    if (!targetElement) {
+      // eslint-disable-next-line no-console
+      console.error('disableBodyScroll unsuccessful - targetElement must be provided when calling disableBodyScroll on IOS devices.');
+      return;
+    }
+
+    // disableBodyScroll must not have been called on this targetElement before
+    if (locks.some(function (lock) {
+      return lock.targetElement === targetElement;
+    })) {
+      return;
+    }
+
+    var lock = {
+      targetElement: targetElement,
+      options: options || {}
+    };
+
+    locks = [].concat(_toConsumableArray(locks), [lock]);
+
+    if (isIosDevice) {
+      targetElement.ontouchstart = function (event) {
+        if (event.targetTouches.length === 1) {
+          // detect single touch.
+          initialClientY = event.targetTouches[0].clientY;
+        }
+      };
+      targetElement.ontouchmove = function (event) {
+        if (event.targetTouches.length === 1) {
+          // detect single touch.
+          handleScroll(event, targetElement);
+        }
+      };
+
+      if (!documentListenerAdded) {
+        document.addEventListener('touchmove', preventDefault, hasPassiveEvents ? { passive: false } : undefined);
+        documentListenerAdded = true;
+      }
+    } else {
+      setOverflowHidden(options);
+    }
+  };
+
+  var enableBodyScroll = function enableBodyScroll(targetElement) {
+    if (!targetElement) {
+      // eslint-disable-next-line no-console
+      console.error('enableBodyScroll unsuccessful - targetElement must be provided when calling enableBodyScroll on IOS devices.');
+      return;
+    }
+
+    locks = locks.filter(function (lock) {
+      return lock.targetElement !== targetElement;
+    });
+
+    if (isIosDevice) {
+      targetElement.ontouchstart = null;
+      targetElement.ontouchmove = null;
+
+      if (documentListenerAdded && locks.length === 0) {
+        document.removeEventListener('touchmove', preventDefault, hasPassiveEvents ? { passive: false } : undefined);
+        documentListenerAdded = false;
+      }
+    } else if (!locks.length) {
+      restoreOverflowSetting();
+    }
+  };
+
+  var css_248z$1 = ".hypermodals-modal-container {\n  overflow: scroll;\n  width: 100vw;\n  height: 100vh;\n  position: absolute;\n  z-index: 99;\n  top: 0;\n  left: 0; }\n  .hypermodals-modal-container .hypermodals-modal {\n    padding: 15px;\n    padding-top: 65px;\n    border-radius: 20px;\n    align-items: center;\n    background-color: #ffffff;\n    box-sizing: border-box;\n    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);\n    position: relative;\n    transform: translate(-50%, 0%);\n    left: 50vw;\n    top: 10vh;\n    width: calc(100vw - 40px);\n    animation-name: hypermodals-modal-enter;\n    animation-duration: 0.5s;\n    /* animation-timing-function: cubic-bezier(0.1, 0, 0.58, 1); */\n    animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1); }\n    .hypermodals-modal-container .hypermodals-modal * {\n      font-size: 20px; }\n    .hypermodals-modal-container .hypermodals-modal p,\n    .hypermodals-modal-container .hypermodals-modal button,\n    .hypermodals-modal-container .hypermodals-modal i,\n    .hypermodals-modal-container .hypermodals-modal img {\n      margin: 0;\n      padding: 0; }\n    .hypermodals-modal-container .hypermodals-modal .hypermodals-modal-closebtn {\n      position: absolute;\n      right: 15px;\n      top: 15px;\n      height: 50px;\n      width: 50px;\n      border-radius: 15px;\n      border: none;\n      transition: filter 0.3s ease-in-out;\n      cursor: pointer;\n      color: #323232;\n      background-color: #ffffff;\n      filter: brightness(0.97); }\n      .hypermodals-modal-container .hypermodals-modal .hypermodals-modal-closebtn:hover {\n        filter: brightness(0.89); }\n    .hypermodals-modal-container .hypermodals-modal .hypermodals-modal-content {\n      padding-top: 15px; }\n    .hypermodals-modal-container .hypermodals-modal.hypermodals-modal-exit {\n      animation-name: hypermodals-modal-exit;\n      animation-duration: 0.6s;\n      animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);\n      transform: translate(-50%, -120%); }\n\n@keyframes hypermodals-modal-enter {\n  0% {\n    transform: translate(-50%, 50vh);\n    opacity: 0;\n    box-shadow: none; }\n  30% {\n    opacity: 0; }\n  100% {\n    transform: translate(-50%, 0%);\n    opacity: 1;\n    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1); } }\n\n@keyframes hypermodals-modal-exit {\n  0% {\n    transform: translate(-50%, 0%);\n    opacity: 1;\n    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1); }\n  70% {\n    opacity: 0; }\n  100% {\n    transform: translate(-50%, 50vh);\n    opacity: 0;\n    box-shadow: none; } }\n\n@media only screen and (min-width: 800px) {\n  .hypermodals-modal {\n    width: 80vw; } }\n\n@media only screen and (min-width: 1100px) {\n  .hypermodals-modal {\n    width: 60vw; } }\n\n@media only screen and (min-width: 1500px) {\n  .hypermodals-modal {\n    width: 800px; } }\n";
   styleInject(css_248z$1);
 
-  // TODO: Clean up variables and names (also variable names to create consistent names)
-
   class Modal {
-      constructor(html, config = {}) {
+      constructor(templateId, config = {}) {
           // Store config and html in class
-          this.html = html;
+          this.template = document.querySelector(templateId);
 
           this.element = config.element || "body";
-          this.bgColor = config.bgColor; // TODO: Change default color
+          this.bgColor = config.bgColor;
           this.delay = config.delay || 0;
-
-          console.dir(config);
+          this.callbacks = config.callbacks || {};
 
           // Provide errors if non-optional values aren't given
-          if (!this.html) {
-              console.error("Error: html param is undefined.");
-              console.warn("Try something like this: \n\nlet modal = new HyperModals.Modal('<p>This is a basic modal</p>', { theme: 'dark' }); \n\nFor more info visit: https://github.com/Jaaahn/HyperModals/");
+          if (this.element == undefined) {
+              console.error("Error: templateId param is undefined.");
+              console.warn("Try something like this: \n\nlet modal = new HyperModals.Modal('#myModalTemplate'); \n\nFor more info visit: https://github.com/Jaaahn/HyperModals/");
               return;
           }
 
-          // Init the variable where the html will be strore
+          // Init the variable where the modal's element will be stored
           this.modalElement;
 
           this.present();
+
+          // Return promise to user
+          return new Promise((resolve, reject) => {
+              let instance = this;
+
+              // Called by user for resolving promise => fires .then() listener
+              this.resolvePromise = function () {
+                  instance.close();
+                  let args = Array.prototype.slice.call(arguments);
+
+                  // If only one parameter is provided, then don't pass that one as an array (Or don't pass any param if no param is provided)
+                  if (args.length == 1) {
+                      resolve(args[0]);
+                  } else if (args.length == 0) {
+                      resolve();
+                  } else {
+                      resolve(args);
+                  }
+              };
+
+              // Called by user for rejecting promise => fires .catch() listener
+              this.rejectPromise = function () {
+                  instance.close();
+                  let args = Array.prototype.slice.call(arguments);
+
+                  // If only one parameter is provided, then don't pass that one as an array (Or don't pass any param if no param is provided)
+                  if (args.length == 1) {
+                      reject(args[0]);
+                  } else if (args.length == 0) {
+                      reject();
+                  } else {
+                      reject(args);
+                  }
+              };
+          });
       }
 
       present() {
@@ -145,16 +367,20 @@
       }
 
       create() {
-          // Create container / background
+          // Create container
+          let container = document.createElement("div");
+          container.classList.add("hypermodals-modal-container");
+
+          // Create modal / background
           let modal = document.createElement("div");
           modal.classList.add("hypermodals-modal");
 
           // Create close btn
           let closeBtn = document.createElement("button");
           closeBtn.classList.add("hypermodals-modal-closebtn");
-          closeBtn.innerText = "X";
+          closeBtn.innerText = "X"; // TODO
           closeBtn.addEventListener("click", () => {
-              this.close();
+              this.rejectPromise({ code: "dismissed", message: "User dismissed modal" });
           });
           modal.appendChild(closeBtn);
 
@@ -163,23 +389,61 @@
               modal.style = "background-color:" + this.bgColor;
           }
 
-          // Fill modal with provided html
+          // Fill modal with provided template html
           let content = document.createElement("div");
           content.classList.add("hypermodals-modal-content");
-          content.innerHTML = this.html;
-          modal.appendChild(content);
+          content.appendChild(this.template.content.cloneNode(true));
 
-          this.modalElement = modal;
+          // Stick elements together
+          modal.appendChild(content);
+          container.appendChild(modal);
+          this.modalElement = container;
+          disableBodyScroll(container);
+
+          // Add callbacks
+          modal.addEventListener("click", (event) => {
+              event.stopPropagation();
+
+              // Handle if using dedicated resolve & reject attributes
+              if (event.target.dataset.hmResolve !== undefined) {
+                  this.resolvePromise();
+                  return;
+              } else if (event.target.dataset.hmReject !== undefined) {
+                  this.rejectPromise();
+                  return;
+              }
+
+              // Proceed with any type of callbacks
+              let callbackName = event.target.dataset.hmCallback;
+
+              // In case the clicked element has no callback
+              if (callbackName == undefined) {
+                  return;
+              }
+
+              let callback = this.callbacks[callbackName];
+
+              // Check if callback exists
+              if (callback == undefined) {
+                  console.error("Error: templateId param is undefined.");
+                  console.warn("Try something like this: \n\nlet modal = new HyperModals.Modal('#myModalTemplate'); \n\nFor more info visit: https://github.com/Jaaahn/HyperModals/");
+                  return;
+              }
+
+              // Execute callback
+              callback(this.resolvePromise, this.rejectPromise, event);
+          });
 
           // Append to DOM
-          document.querySelector(this.element).appendChild(modal);
+          document.querySelector(this.element).appendChild(container);
       }
 
       close() {
           // Add animation class
-          this.modalElement.classList.add("hypermodals-modal-exit");
+          this.modalElement.children[0].classList.add("hypermodals-modal-exit");
           setTimeout(() => {
               document.querySelector(this.element).removeChild(this.modalElement);
+              enableBodyScroll(this.modalElement);
           }, 1000 * 0.5);
       }
   }

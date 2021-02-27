@@ -3,74 +3,83 @@ $backgroundColor: #ffffff;
 $fontColor: #323232;
 
 // Style container
-.hypermodals-modal {
-    padding: 15px;
-    padding-top: 65px;
-    border-radius: 20px;
-    align-items: center;
+.hypermodals-modal-container {
+    overflow: scroll;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     z-index: 99; // Less than notification
-    background-color: $backgroundColor;
-    box-sizing: border-box;
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
 
-    position: fixed;
-    transform: translate(-50%, -50%);
-    left: 50vw;
-    top: 50vh;
-    max-height: 80vh;
-
-    // Mobile
-    width: calc(100vw - 40px);
-
-    animation-name: hypermodals-modal-enter;
-    animation-duration: 0.5s;
-    /* animation-timing-function: cubic-bezier(0.1, 0, 0.58, 1); */ // More smooth
-    animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1);
-
-    & * {
-        font-size: 20px;
-    }
-
-    // Remove generic styling
-    p,
-    button,
-    i,
-    img {
-        margin: 0;
-        padding: 0;
-    }
-
-    // Style close btn
-    .hypermodals-modal-closebtn {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        height: 50px;
-        width: 50px;
-        border-radius: 15px;
-        border: none;
-        transition: filter 0.3s ease-in-out;
-        cursor: pointer;
-        color: $fontColor; // Adapt
+    .hypermodals-modal {
+        padding: 15px;
+        padding-top: 65px;
+        border-radius: 20px;
+        align-items: center;
         background-color: $backgroundColor;
-        filter: brightness(0.97);
+        box-sizing: border-box;
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
 
-        &:hover {
-            filter: brightness(0.89);
+        position: relative;
+        transform: translate(-50%, 0%);
+        left: 50vw;
+        top: 10vh;
+
+        // Mobile
+        width: calc(100vw - 40px);
+
+        // Apply enter animation
+        animation-name: hypermodals-modal-enter;
+        animation-duration: 0.5s;
+        /* animation-timing-function: cubic-bezier(0.1, 0, 0.58, 1); */ // More smooth
+        animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1);
+
+        & * {
+            font-size: 20px;
         }
-    }
 
-    // Spacing between closebtn and content
-    .hypermodals-modal-content {
-        padding-top: 15px;
-    }
+        // Remove generic styling
+        p,
+        button,
+        i,
+        img {
+            margin: 0;
+            padding: 0;
+        }
 
-    // Apply exit animation
-    &.hypermodals-modal-exit {
-        animation-name: hypermodals-modal-exit;
-        animation-duration: 0.6s;
-        animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
-        transform: translate(-50%, -120%);
+        // Style close btn
+        .hypermodals-modal-closebtn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            height: 50px;
+            width: 50px;
+            border-radius: 15px;
+            border: none;
+            transition: filter 0.3s ease-in-out;
+            cursor: pointer;
+            color: $fontColor; // Adapt
+            background-color: $backgroundColor;
+            filter: brightness(0.97);
+
+            &:hover {
+                filter: brightness(0.89);
+            }
+        }
+
+        // Spacing between closebtn and content
+        .hypermodals-modal-content {
+            padding-top: 15px;
+        }
+
+        // Apply exit animation
+        &.hypermodals-modal-exit {
+            animation-name: hypermodals-modal-exit;
+            animation-duration: 0.6s;
+            animation-timing-function: cubic-bezier(0.7, 0.01, 0.28, 1.29);
+            transform: translate(-50%, -120%);
+        }
     }
 }
 
@@ -85,7 +94,7 @@ $fontColor: #323232;
         opacity: 0;
     }
     100% {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 0%);
         opacity: 1;
         box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
     }
@@ -93,7 +102,7 @@ $fontColor: #323232;
 
 @keyframes hypermodals-modal-exit {
     0% {
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 0%);
         opacity: 1;
         box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
     }

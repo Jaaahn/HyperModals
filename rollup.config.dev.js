@@ -2,6 +2,7 @@ import postcss from "rollup-plugin-postcss";
 
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
 
 export default {
     input: "src/bundle.js",
@@ -14,6 +15,7 @@ export default {
         postcss({
             extensions: [".scss"],
         }),
+        nodeResolve(),
         serve({
             contentBase: ["./example"],
         }),
