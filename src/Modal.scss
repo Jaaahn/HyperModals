@@ -13,31 +13,24 @@ $fontColor: #323232;
     left: 0;
 
     .hypermodals-modal {
-        padding: 15px;
+        padding: 25px;
         padding-top: 65px;
         border-radius: 20px;
         align-items: center;
         background-color: $backgroundColor;
         box-sizing: border-box;
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
 
         position: relative;
         transform: translate(-50%, 0%);
         left: 50vw;
-        top: 10vh;
-
-        // Mobile
-        width: calc(100vw - 40px);
+        margin: 10vh 0;
+        width: Min(95%, 1000px); // TODO: Fix sass issue (workaround with capital M) & Allow user to set the 1000px
 
         // Apply enter animation
         animation-name: hypermodals-modal-enter;
         animation-duration: 0.5s;
-        /* animation-timing-function: cubic-bezier(0.1, 0, 0.58, 1); */ // More smooth
         animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1);
-
-        & * {
-            font-size: 20px;
-        }
 
         // Remove generic styling
         p,
@@ -62,6 +55,7 @@ $fontColor: #323232;
             color: $fontColor; // Adapt
             background-color: $backgroundColor;
             filter: brightness(0.97);
+            font-size: 20px;
 
             &:hover {
                 filter: brightness(0.89);
@@ -96,7 +90,7 @@ $fontColor: #323232;
     100% {
         transform: translate(-50%, 0%);
         opacity: 1;
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
     }
 }
 
@@ -104,7 +98,7 @@ $fontColor: #323232;
     0% {
         transform: translate(-50%, 0%);
         opacity: 1;
-        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
     }
     70% {
         opacity: 0;
@@ -113,24 +107,5 @@ $fontColor: #323232;
         transform: translate(-50%, 50vh);
         opacity: 0;
         box-shadow: none;
-    }
-}
-
-// Adjust size to screen size
-@media only screen and (min-width: 800px) {
-    .hypermodals-modal {
-        width: 80vw;
-    }
-}
-
-@media only screen and (min-width: 1100px) {
-    .hypermodals-modal {
-        width: 60vw;
-    }
-}
-
-@media only screen and (min-width: 1500px) {
-    .hypermodals-modal {
-        width: 800px;
     }
 }
