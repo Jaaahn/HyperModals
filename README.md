@@ -120,8 +120,12 @@ try {
 
 ## Understanding callbacks
 
-There are three types of callbacks that you can define using the datalist attribute. Essentially, the datalist lets you define custom html attributes, that start with "data-". We use these to fire our callbacks.  
-Types of callbacks that are available:
+-   There are three types of callbacks that you can define using the datalist attribute. Essentially, the datalist lets you define custom html attributes, that start with "data-". We use these to fire our callbacks.
+-   Inside of a callback, you can get three parameters, the resolve, the reject function and the click event that led to your callback. While calling the resolve or the reject function, you can pass multiple parameters. These parameters will then be available in `.then()` or `.catch()`. Mind you: due to technical restrictions, if passing multiple parameters to the resolve (or reject) function inside a callback, these will be put into an array and therefore passed as one parameter to the handler functions (See comments in the example above). If you pass only one parameter, no array will be used.
+-   If the user clicks on the dedicated close button, the modal will fire the reject function.
+-   By resolving or rejecting the promise, the modal will be closed automatically.
+
+### Types of callbacks that are available:
 
 -   `data-hm-callback="anyCallbackNameYouImagine"`
 -   `data-hm-resolve`

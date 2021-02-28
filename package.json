@@ -1,6 +1,6 @@
 {
     "name": "hyper-modals",
-    "version": "1.1.0-alpha.1",
+    "version": "1.1.0-alpha.3",
     "description": "An ease to use JS library, that helps you create Modals within seconds!",
     "browser": "dist/hyper-modals.min.js",
     "module": "dist/hyper-modals.es.js",
