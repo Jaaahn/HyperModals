@@ -55,6 +55,8 @@ Details on what options are available can be found in the detailed documentation
 </template>
 ```
 
+If you experience problems with the template tag, you can alternatively use a `<div class="hm-fallback">` tag. You must also set the `useDivFallback` option in the config to `true`.
+
 ```js
 new HyperModals.Modal("#template", {
     callbacks: {
@@ -111,12 +113,13 @@ try {
 
 ## Config
 
-| Option name | Type   | Default value | Description                                                                              |
-| ----------- | ------ | ------------- | ---------------------------------------------------------------------------------------- |
-| `element`   | String | `"body"`      | The DOM element where the Notification should be attached (works like you CSS selectors) |
-| `bgColor`   | String | `""`          | CSS Color value as an easy way of switching the background color                         |
-| `delay`     | Number | `0`           | The delay the modal will wait before appearing on the screen                             |
-| `callbacks` | Object | `{}`          | JS Object of callbacks, more details below                                               |
+| Option name      | Type   | Default value | Description                                                                              |
+| ---------------- | ------ | ------------- | ---------------------------------------------------------------------------------------- |
+| `element`        | String | `"body"`      | The DOM element where the Notification should be attached (works like you CSS selectors) |
+| `bgColor`        | String | `""`          | CSS Color value as an easy way of switching the background color                         |
+| `delay`          | Number | `0`           | The delay the modal will wait before appearing on the screen                             |
+| `callbacks`      | Object | `{}`          | JS Object of callbacks, more details below                                               |
+| `useDivFallback` | Bool   | `false`       | If you want to use a `div` instead of a `template` tag for your modal template           |
 
 ## Understanding callbacks
 
