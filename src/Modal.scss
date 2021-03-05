@@ -32,15 +32,6 @@ $fontColor: #323232;
         animation-duration: 0.5s;
         animation-timing-function: cubic-bezier(0.7, 0.01, 0.4, 1);
 
-        // Remove generic styling
-        p,
-        button,
-        i,
-        img {
-            margin: 0;
-            padding: 0;
-        }
-
         // Style close btn
         .hypermodals-modal-closebtn {
             position: absolute;
@@ -75,6 +66,10 @@ $fontColor: #323232;
             transform: translate(-50%, -120%);
         }
     }
+}
+
+.hm-template {
+    display: none;
 }
 
 // Enter & Exit Animations

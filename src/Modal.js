@@ -6,10 +6,11 @@ export default class Modal {
         // Store config and html in class
         this.template = document.querySelector(templateId);
 
-        this.element = config.element || "body";
+        this.element = config.element ?? "body";
         this.bgColor = config.bgColor;
-        this.delay = config.delay || 0;
-        this.callbacks = config.callbacks || {};
+        this.delay = config.delay ?? 0;
+        this.callbacks = config.callbacks ?? {};
+        this.useDivFallback = config.useDivFallback ?? false;
 
         // Provide errors if non-optional values aren't given
         if (this.element == undefined) {
@@ -87,10 +88,19 @@ export default class Modal {
             modal.style = "background-color:" + this.bgColor;
         }
 
+        // Get template content
+        let clonedTemplate;
+        if (this.useDivFallback) {
+            clonedTemplate = this.template.cloneNode(true);
+            clonedTemplate.classList.remove("hm-template");
+        } else {
+            clonedTemplate = this.template.content.cloneNode(true);
+        }
+
         // Fill modal with provided template html
         let content = document.createElement("div");
         content.classList.add("hypermodals-modal-content");
-        content.appendChild(this.template.content.cloneNode(true));
+        content.appendChild(clonedTemplate);
 
         // Stick elements together
         modal.appendChild(content);
